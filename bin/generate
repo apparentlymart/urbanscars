@@ -3,6 +3,7 @@
 import sass
 import os
 import os.path
+import jinja2
 from datetime import datetime
 import time
 from dulwich.repo import Repo as GitRepo, Commit as GitCommit
@@ -12,17 +13,25 @@ def main():
     base_dir = os.path.join(os.path.dirname(__file__), "..")
     articles_dir = os.path.join(base_dir, "articles")
     media_dir = os.path.join(base_dir, "media")
+    templates_dir = os.path.join(base_dir, "templates")
 
     git_repo = GitRepo(base_dir)
 
     media = copy_media(media_dir)
     media_tree = git_tree_for_dict(media, git_repo)
+    media_key = "media:" + media_tree.id[:8]
+    media_prefix = "/%s/" % media_key
 
     root = {}
-    root["media:" + media_tree.id[:8]] = media
+    root[media_key] = media
+
+    template_env = jinja2.Environment(
+        loader=jinja2.FileSystemLoader(templates_dir),
+    )
+    base_tmpl = template_env.get_template("base.html")
+    root["index.html"] = str(base_tmpl.render(media_prefix=media_prefix))
 
     root_tree = git_tree_for_dict(root, git_repo)
-    print git_repo["HEAD"].commit_time
     commit = GitCommit()
     commit.tree = root_tree.id
     commit.message = "Generated from %s\n\n%s" % (

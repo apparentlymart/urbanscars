@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>{% block htmltitle %}Urban Scars{% endblock %}</title>
+    <link rel="stylesheet" type="text/css" href="{{ media_prefix }}screen.css">
+  </head>
+  <body>
+
+    <div id="wrapper">
+      <header>
+        <div id="logo">
+          <h1><a href="/">Urban Scars</a></h1>
+        </div>
+        <div id="grad"></div>
+      </header>
+
+      <div id="main">
+        <div id="alpha">
+          {% block main %}{% endblock %}
+        </div>
+        <div id="beta">
+          {% block ad %}<div class="ad"></div>{% endblock %}
+          {% block sidebar %}{% endblock %}
+        </div>
+        <div id="clear"></div>
+      </div>
+
+      <footer>
+        <p>
+          Header built from <a href="http://www.flickr.com/photos/apasciuto/4756868572/">San Francisco aerial photo</a>
+          by <a href="http://www.flickr.com/photos/apasciuto/">apasciuto</a></p>
+      </footer>
+
+    </div>
+
+  </body>
+</html>
