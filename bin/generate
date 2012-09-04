@@ -1,15 +1,77 @@
 #!/usr/bin/env python
 
-# Later this will grow to be something more substantial, but for now it
-# just generates a .css file from the .scss template.
-
 import sass
+import os
 import os.path
+from datetime import datetime
+import time
+from dulwich.repo import Repo as GitRepo, Commit as GitCommit
 
-base_dir = os.path.join(os.path.dirname(__file__), "..")
+
+def main():
+    base_dir = os.path.join(os.path.dirname(__file__), "..")
+    articles_dir = os.path.join(base_dir, "articles")
+    media_dir = os.path.join(base_dir, "media")
+
+    git_repo = GitRepo(base_dir)
+
+    media = copy_media(media_dir)
+    media_tree = git_tree_for_dict(media, git_repo)
+
+    root = {}
+    root["media:" + media_tree.id[:8]] = media
+
+    root_tree = git_tree_for_dict(root, git_repo)
+    print git_repo["HEAD"].commit_time
+    commit = GitCommit()
+    commit.tree = root_tree.id
+    commit.message = "Generated from %s\n\n%s" % (
+        git_repo["HEAD"].id,
+        git_repo["HEAD"],
+    )
+    now = int(time.mktime(datetime.utcnow().timetuple()))
+    commit.committer = "Site Generator <generator@urbanscars.com>"
+    commit.commit_time = now
+    commit.commit_timezone = 0
+    commit.author = "Site Generator <generator@urbanscars.com>"
+    commit.author_time = now
+    commit.author_timezone = 0
+    git_repo.object_store.add_object(commit)
+    git_repo["refs/heads/gh-pages"] = commit.id
+    print commit.id
 
 
-scss_source = open(os.path.join(base_dir, "media", "screen.scss"), 'r').read()
-css_source = sass.compile(string=scss_source)
-css_file = open(os.path.join(base_dir, "media", "screen.css"), 'w')
-css_file.write(css_source)
+def copy_media(media_dir):
+    ret = {}
+    items = os.listdir(media_dir)
+    for fn in items:
+        full_fn = os.path.join(media_dir, fn)
+        if os.path.isdir(full_fn):
+            ret[fn] = copy_media(full_fn)
+        else:
+            if fn[-5:] == ".scss":
+                new_fn = fn[:-5] + ".css"
+                ret[new_fn] = sass.compile(
+                    filename=full_fn,
+                )
+            else:
+                ret[fn] = open(full_fn, 'r').read()
+    return ret
+
+
+def git_tree_for_dict(d, git_repo):
+    from dulwich.objects import Tree, Blob
+    tree = Tree()
+    for fn, data in d.iteritems():
+        if type(data) is dict:
+            subtree = git_tree_for_dict(data, git_repo)
+            tree.add(fn, 0040000, subtree.id)
+        else:
+            blob = Blob.from_string(data)
+            git_repo.object_store.add_object(blob)
+            tree.add(fn, 0100644, blob.id)
+    git_repo.object_store.add_object(tree)
+    return tree
+
+
+main()
