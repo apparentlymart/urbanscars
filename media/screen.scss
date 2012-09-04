@@ -18,6 +18,7 @@ $alpha-width: $main-width - $beta-width - $spacing;
 $hero-width: $alpha-width;
 $hero-height: 45px * $multiplier;
 $body-font-size: 0.6px * $line-height;
+$body-heading-font-size: 0.9px * $line-height;
 $hero-title-font-size: $line-height;
 $divider-stroke-weight: 2px;
 $divider-spacing: $spacing - ($divider-stroke-weight / 2);
@@ -251,6 +252,124 @@ article.hero {
     @include article-list($toplist-item-height, $toplist-item-image-aspect, $toplist-item-heading-font-size, $spacing / 2);
 }
 
+article.full {
+    display: block;
+
+    .article-city {
+        position: absolute;
+        left: -2px * $spacing;
+        top: $spacing;
+        padding: $spacing - 2px;
+        background: $content-accent-color;
+        border: 2px solid $content-accent-contrast-color;
+        color: $content-accent-contrast-color;
+        border-radius: 10px;
+        font-size: $body-font-size;
+    }
+    .article-date {
+        margin: 0;
+        text-align: right;
+        padding-top: $spacing;
+        padding-bottom: $spacing;
+    }
+    .article-summary {
+        text-align: justify;
+        padding-bottom: $divider-spacing;
+        margin-bottom: $spacing / -2; /* The body elements all provide top margin, but it compounds with the divider spacing so we have to counteract it here.  */
+        border-bottom: $divider-stroke-weight solid $divider-color;
+
+        h1 {
+            margin: 0;
+            margin-top: $spacing * 2;
+            font-size: $hero-title-font-size;
+            line-height: $line-height;
+        }
+        p {
+            line-height: $line-height;
+            font-size: $body-font-size;
+            margin: 0;
+            margin-top: $spacing;
+            display: none;
+        }
+        .article-byline {
+            line-height: $line-height;
+        }
+    }
+    .article-body {
+        padding: $spacing;
+
+        padding-bottom: $divider-spacing;
+        margin-bottom: $divider-spacing;
+        border-bottom: $divider-stroke-weight solid $divider-color;
+
+        p {
+            line-height: $line-height;
+            margin: $spacing 0;
+            text-align: justify;
+        }
+
+        h2 {
+            line-height: $line-height;
+            font-weight: bold;
+            font-size: $body-heading-font-size;
+            text-align: justify;
+        }
+
+        figure {
+            margin: $spacing $spacing * -1;
+            padding: 0;
+            position: relative;
+
+            img {
+                width: 100%;
+                vertical-align: bottom;
+            }
+            figcaption {
+                margin: 0;
+                position: absolute;
+                top: auto;
+                bottom: 0;
+                left: 0;
+                right: 0;
+                background: $darkbox-bg-color;
+                color: $darkbox-fg-color;
+                padding: $spacing;
+                line-height: $line-height;
+            }
+            .attrib {
+                position: absolute;
+                font-size: 0.9em;
+                top: 0;
+                right: 0;
+                left: auto;
+                bottom: auto;
+                width: auto;
+                color: $darkbox-fg-color;
+                background: $darkbox-bg-color;
+                padding: $spacing / 2;
+                a {
+                    color: $darkbox-fg-color;
+                }
+            }
+
+            &.float {
+                float: right;
+                width: 50%;
+                margin-left: $spacing * 2;
+                margin-bottom: $spacing * 2;
+                margin-top: $spacing * 0.6;
+
+                figcaption {
+                    padding: $spacing / 2 $spacing;
+                }
+                .attrib {
+                    font-size: 0.75em;
+                }
+            }
+        }
+    }
+}
+
 #beta {
     float: right;
     width: $beta-width;
@@ -283,6 +402,29 @@ article.hero {
 }
 .article-minilist {
     @include article-list($minilist-item-height, $minilist-item-image-aspect, $minilist-item-heading-font-size, 0);
+}
+
+.referencelist, .referencelist li {
+    margin: 0;
+    padding: 0;
+    list-style: none;
+}
+.referencelist {
+    padding-top: $divider-spacing;
+    margin-top: $divider-spacing;
+    border-top: $divider-stroke-weight solid $divider-color;
+    padding-bottom: $divider-spacing;
+    margin-bottom: $divider-spacing + $spacing + $spacing; /* To push away the Related Articles list below. */
+    border-bottom: $divider-stroke-weight solid $divider-color;
+    line-height: $line-height;
+
+    li {
+        padding: 0 $spacing;
+        margin-top: $spacing;
+    }
+    li:first-child {
+        margin-top: 0;
+    }
 }
 
 #clear {
