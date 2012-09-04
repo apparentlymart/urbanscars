@@ -1,0 +1,290 @@
+
+$content-bg-color: #ffffff;
+$content-fg-color: #000000;
+$content-accent-color: rgb(0, 110, 85);
+$content-accent-contrast-color: #ffffff;
+$surround-bg-color: #eeeeee;
+$darkbox-fg-color: #ffffff;
+$darkbox-bg-color: rgba(0, 0, 0, 0.30);
+$img-placeholder-color: #dddddd;
+$divider-color: #dddddd;
+
+$multiplier: 10px;
+$spacing: $multiplier;
+$line-height: 2px * $multiplier;
+$main-width: 91px * $multiplier;
+$beta-width: 300px; /* Should always be 300 so it can fit a 300x250 ad unit */
+$alpha-width: $main-width - $beta-width - $spacing;
+$hero-width: $alpha-width;
+$hero-height: 45px * $multiplier;
+$body-font-size: 0.6px * $line-height;
+$hero-title-font-size: $line-height;
+$divider-stroke-weight: 2px;
+$divider-spacing: $spacing - ($divider-stroke-weight / 2);
+$toplist-item-height: 10px * $multiplier;
+$toplist-item-image-aspect: 1.5;
+$toplist-item-heading-font-size: 0.9px * $line-height;
+$sidebar-heading-font-size: $line-height * 0.8;
+$minilist-item-height: 6px * $multiplier;
+$minilist-item-image-aspect: 1.167;
+$minilist-item-heading-font-size: $body-font-size;
+
+/* Physical characteristics of the header imagery */
+$header-image-height: 400px;
+$header-logo-image-width: 875px;
+$header-logo-image-height: 220px;
+$header-logo-image-aspect: $header-logo-image-width / $header-logo-image-height;
+
+/* Header dimensions derived from the physical image sizes */
+$header-height: $header-image-height / 2;
+$header-logo-height: $header-height / 2;
+$header-logo-width: $header-logo-height * $header-logo-image-aspect;
+$header-logo-padding: ($header-height - $header-logo-height) / 2;
+$header-grad-height: $header-image-height * 0.625px;
+
+html, body {
+    background: $surround-bg-color;
+    color: $content-fg-color;
+    font-family: "Helvetica", "Arial", sans-serif;
+    margin: 0;
+    padding: 0;
+    font-size: $body-font-size;
+}
+a:link, a:hover, a:visited {
+    color: $content-accent-color;
+    text-decoration: none;
+}
+
+header, article, section {
+    display: block;
+}
+
+header {
+    display: block;
+    background: url(images/headerbg.jpg);
+    height: $header-image-height;
+    background-position: center;
+    position: relative;
+
+    #logo {
+        width: $main-width;
+        margin: 0 auto;
+        padding-top: $header-logo-padding;
+    }
+    #grad {
+        position: absolute;
+        bottom: 0;
+        left: 0;
+        right: 0;
+        top: $header-image-height - $header-grad-height;
+        background: -moz-linear-gradient(top, transparentize($surround-bg-color, 1) 0%, $surround-bg-color 100%);
+        background: -webkit-gradient(linear, left top, left bottom, color-stop(0%,transparentize($surround-bg-color, 1)), color-stop(100%,$surround-bg-color));
+        background: -webkit-linear-gradient(top, transparentize($surround-bg-color, 1) 0%,$surround-bg-color 100%);
+        background: linear-gradient(to bottom, transparentize($surround-bg-color, 1) 0%,$surround-bg-color 100%);
+    }
+    h1 {
+        margin: 0;
+        padding: 0;
+        margin-left: $header-logo-padding - $spacing;
+        a {
+            display: block;
+            text-indent: -10000px;
+            height: $header-logo-height;
+            background: url(images/logo.svg);
+            background-size: contain;
+            background-repeat: no-repeat;
+            width: $header-logo-width;
+        }
+    }
+}
+footer {
+    display: block;
+    width: $main-width;
+    margin: 0 auto;
+    padding: $spacing 0;
+    text-align: right;
+    font-size: $body-font-size / 0.9;
+
+    p {
+        margin: 0;
+    }
+}
+
+#main {
+    background: $content-bg-color;
+    width: $main-width;
+    margin: 0 auto;
+    padding: $spacing;
+    margin-top: $header-height - $header-image-height;
+    min-height: $header-image-height;
+    position: relative;
+}
+
+#alpha {
+    float: left;
+    width: $alpha-width;
+}
+
+article.hero {
+    width: $hero-width;
+    height: $hero-height;
+    background-color: $img-placeholder-color;
+    background-size: cover;
+    position: relative;
+
+    .article-summary {
+        background: $darkbox-bg-color;
+        color: $darkbox-fg-color;
+        padding: $spacing * 2px;
+        position: absolute;
+        bottom: 0;
+        left: 0;
+        right: 0;
+        top: auto;
+        font-size: $body-font-size;
+        line-height: $line-height;
+        text-align: justify;
+    }
+    .article-summary a {
+        color: $darkbox-fg-color;
+    }
+    .article-summary h2, article.hero .article-summary p {
+        margin: 0;
+        padding: 0;
+    }
+    .article-summary h2 {
+        font-size: $hero-title-font-size;
+        font-weight: bold;
+    }
+    .article-summary p {
+        margin: 0;
+        margin-top: $spacing;
+    }
+    .article-city {
+        position: absolute;
+        left: -2px * $spacing;
+        top: $spacing;
+        padding: $spacing - 2px;
+        background: $content-accent-color;
+        border: 2px solid $content-accent-contrast-color;
+        color: $content-accent-contrast-color;
+        border-radius: 10px;
+        font-size: $body-font-size;
+    }
+    .article-link {
+        display: block;
+        position: absolute;
+        top: 0;
+        bottom: 0;
+        left: 0;
+        right: 0;
+        text-indent: -10000px;
+    }
+}
+
+@mixin article-list($item-height, $image-aspect, $heading-font-size, $heading-top-margin) {
+    padding-top: $divider-spacing;
+    margin-top: $divider-spacing;
+    border-top: $divider-stroke-weight solid $divider-color;
+
+    li {
+        height: $item-height;
+        padding-bottom: $divider-spacing;
+        margin-bottom: $divider-spacing;
+        border-bottom: $divider-stroke-weight solid $divider-color;
+        position: relative;
+    }
+    .article-photo {
+        height: $item-height;
+        width: $item-height * $image-aspect;
+        margin-right: $spacing;
+        margin-left: $spacing;
+        float: left;
+        background-color: $divider-color;
+        background-size: cover;
+    }
+    .article-photo a {
+        position: absolute;
+        top: 0;
+        left: 0;
+        right: 0;
+        bottom: 0;
+    }
+    .article-summary {
+        padding-right: $spacing;
+        text-align: justify;
+    }
+    .article-summary h3, .article-summary h2 {
+        margin: 0;
+        padding: 0;
+        line-height: $line-height;
+        font-size: $heading-font-size;
+        font-weight: bold;
+        padding-top: $heading-top-margin;
+    }
+    .article-summary p {
+        line-height: $line-height;
+        font-size: $body-font-size;
+        margin: 0;
+        padding: 0;
+        margin-top: $spacing;
+    }
+    .article-city {
+        position: absolute;
+        left: $spacing / -2;
+        top: $spacing / 2;
+        padding: ($spacing - 2px) / 2;
+        background: $content-accent-color;
+        border: 2px solid $content-accent-contrast-color;
+        color: $content-accent-contrast-color;
+        border-radius: $spacing / 2;
+        font-size: $multiplier;
+    }
+}
+
+.article-toplist, .article-toplist li {
+    margin: 0;
+    padding: 0;
+    list-style: none;
+}
+.article-toplist {
+    @include article-list($toplist-item-height, $toplist-item-image-aspect, $toplist-item-heading-font-size, $spacing / 2);
+}
+
+#beta {
+    float: right;
+    width: $beta-width;
+
+    .ad {
+        /* This is hard-coded because it has to fit a particular IAB ad unit size. */
+        width: 300px;
+        height: 250px;
+        margin-bottom: $spacing * 2px;
+        background: $img-placeholder-color;
+    }
+    .sidebar {
+        width: $beta-width;
+        line-height: $line-height;
+    }
+    .sidebar h2 {
+        margin: 0;
+        padding: 0;
+        font-size: $sidebar-heading-font-size;
+        font-weight: bold;
+        line-height: $line-height;
+        padding: 0 $spacing;
+    }
+}
+
+.article-minilist, .article-minilist li {
+    margin: 0;
+    padding: 0;
+    list-style: none;
+}
+.article-minilist {
+    @include article-list($minilist-item-height, $minilist-item-image-aspect, $minilist-item-heading-font-size, 0);
+}
+
+#clear {
+    clear: both;
+}

@@ -1,0 +1,15 @@
+#!/usr/bin/env python
+
+# Later this will grow to be something more substantial, but for now it
+# just generates a .css file from the .scss template.
+
+import sass
+import os.path
+
+base_dir = os.path.join(os.path.dirname(__file__), "..")
+
+
+scss_source = open(os.path.join(base_dir, "media", "screen.scss"), 'r').read()
+css_source = sass.compile(string=scss_source)
+css_file = open(os.path.join(base_dir, "media", "screen.css"), 'w')
+css_file.write(css_source)
