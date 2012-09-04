@@ -30,6 +30,7 @@ def main():
     )
     base_tmpl = template_env.get_template("base.html")
     root["index.html"] = str(base_tmpl.render(media_prefix=media_prefix))
+    root["CNAME"] = "urbanscars.com"
 
     root_tree = git_tree_for_dict(root, git_repo)
     commit = GitCommit()
