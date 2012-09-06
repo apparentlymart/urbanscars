@@ -1,6 +1,11 @@
 San Francisco Belt Railroad
 ===========================
 
+:Author: Martin Atkins
+:Abstract: Despite two total revamps of the street layout, San
+     Francisco's Embarcadero retains evidence of the Port of San Francisco's
+     shortline freight railroad.
+
 .. meta::
    :description: Despite two total revamps of the street layout, San
      Francisco's Embarcadero retains evidence of the Port of San Francisco's
