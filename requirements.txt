@@ -3,3 +3,5 @@ dulwich
 Jinja2
 docutils
 PIL
+gunicorn==0.14.6
+

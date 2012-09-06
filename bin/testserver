@@ -1,0 +1,75 @@
+#!/usr/bin/env python
+
+import gunicorn
+from gunicorn.app.base import Application
+import dulwich
+import dulwich.repo
+import os.path
+import sys
+
+
+repo_path = os.path.join(os.path.dirname(__file__), "..")
+repo = dulwich.repo.Repo(repo_path)
+types = {
+    'css': 'text/css',
+    'png': 'image/png',
+    'gif': 'image/gif',
+    'jpg': 'image/jpeg',
+    'svg': 'image/svg+xml',
+    'jpeg': 'image/jpeg',
+    'html': 'text/html',
+    'js': 'text/javascript',
+}
+
+
+def main():
+    TestApplication().run()
+
+
+def application(environ, start_response):
+
+    path = environ["PATH_INFO"]
+    if path[-1] == "/":
+        path = path + "index.html"
+    parts = path.split("/")[1:]
+
+    (basename, ext) = path.rsplit(".", 1)
+    mime_type = types.get(ext, "text/plain")
+
+    commit = repo['refs/heads/gh-pages']
+    tree = repo.tree(commit.tree)
+
+    entry = None
+    for part in parts:
+        if entry is not None:
+            tree = repo.tree(entry[1])
+        try:
+            entry = tree[part]
+        except KeyError, ex:
+            start_response("404", [('Content-Type', 'text/plain')])
+            return ["Not Found"]
+
+    # If all is well then our "entry" should now be pointing at a blob
+    data = repo.get_blob(entry[1]).as_raw_string()
+
+    start_response("200", [
+        ('Content-Type', mime_type),
+        ('Content-Length', str(len(data))),
+    ])
+    return [data]
+
+
+class TestApplication(Application):
+
+    def __init__(self):
+        Application.__init__(self)
+        self.callable = application
+
+    def load(self):
+        pass
+
+    def init(self, parser, opts, args):
+        pass
+
+
+sys.exit(main())
