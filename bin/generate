@@ -6,6 +6,10 @@ import os.path
 import jinja2
 from datetime import datetime
 import time
+import docutils.core
+import docutils.nodes
+import cgi
+from StringIO import StringIO
 from dulwich.repo import Repo as GitRepo, Commit as GitCommit
 
 
@@ -28,6 +32,17 @@ def main():
     template_env = jinja2.Environment(
         loader=jinja2.FileSystemLoader(templates_dir),
     )
+
+    articles = prepare_articles(articles_dir)
+    for article in articles:
+        article_dict = {}
+        article_dict["index.html"] = render_article(
+            article,
+            template_env,
+            media_prefix,
+        )
+        root[article.urlname] = article_dict
+
     base_tmpl = template_env.get_template("base.html")
     root["index.html"] = str(base_tmpl.render(media_prefix=media_prefix))
     root["CNAME"] = "urbanscars.com"
@@ -67,6 +82,141 @@ def copy_media(media_dir):
             else:
                 ret[fn] = open(full_fn, 'r').read()
     return ret
+
+
+class Article(object):
+
+    def __init__(self, **kwargs):
+        self.__dict__.update(kwargs)
+
+
+def prepare_articles(articles_dir):
+    articles = []
+    items = os.listdir(articles_dir)
+
+    class Visitor(docutils.nodes.NodeVisitor):
+
+        def __init__(self, document, f):
+            self.f = f
+            self.heading_level = 1
+            self.title = None
+            self.author = None
+            self.summary = None
+            docutils.nodes.NodeVisitor.__init__(self, document)
+
+        def eat(self, elem):
+            raise docutils.nodes.SkipNode
+
+        def ignore(self, elem):
+            pass
+
+        visit_document = ignore
+        depart_document = ignore
+
+        def visit_title(self, title):
+            if self.heading_level < 2:
+                self.title = title.astext()
+                raise docutils.nodes.SkipNode
+            else:
+                self.f.write("<h%i>" % self.heading_level)
+        def depart_title(self, title):
+            self.f.write("</h%i>" % self.heading_level)
+
+        def visit_docinfo(self, docinfo):
+            # FIXME: This should be more robust, not assume that
+            # the author is always first
+            self.author = docinfo[0].astext()
+            raise docutils.nodes.SkipNode
+
+        def visit_topic(self, topic):
+            # FIXME: This should be more robust, not assume that
+            # the abstract is always the second element and that
+            # it's a single paragraph.
+            self.summary = topic[1].astext()
+            raise docutils.nodes.SkipNode
+
+        def visit_Text(self, text):
+            self.f.write(cgi.escape(unicode(text)).encode('utf8'))
+        depart_Text = ignore
+
+        def visit_figure(self, figure):
+            self.f.write("<figure")
+            classes = figure["classes"]
+            if len(classes) > 0:
+                self.f.write(' class="%s"' % " ".join(classes))
+            self.f.write(">")
+        def depart_figure(self, figure):
+            self.f.write("</figure>")
+
+        def visit_paragraph(self, p):
+            self.f.write("<p>")
+        def depart_paragraph(self, p):
+            self.f.write("</p>")
+
+        def visit_section(self, s):
+            self.f.write("<section")
+            ids = s["ids"]
+            if len(ids) > 0:
+                self.f.write(' id="%s"' % " ".join(ids))
+            self.f.write(">")
+            self.heading_level = self.heading_level + 1
+        def depart_section(self, s):
+            self.f.write("</section>")
+            self.heading_level = self.heading_level - 1
+
+        def visit_image(self, image):
+            self.f.write("<img src=\"%s\">" % image["uri"])
+        depart_image = ignore
+
+        def visit_caption(self, caption):
+            self.f.write("<figcaption>")
+        def depart_caption(self, caption):
+            self.f.write("</figcaption>")
+
+        def visit_legend(self, legend):
+            self.f.write('<div class="attrib">%s</div>' % (
+                legend.astext().encode('utf8')
+            ))
+            raise docutils.nodes.SkipNode
+
+    for fn in items:
+        full_fn = os.path.join(articles_dir, fn)
+        if os.path.isdir(full_fn):
+            content_fn = os.path.join(full_fn, "article.rst")
+            content_src = open(content_fn, 'r').read()
+            doctree = docutils.core.publish_doctree(content_src)
+            title_idx = doctree.first_child_matching_class(
+                docutils.nodes.title,
+            )
+            docinfo_idx = doctree.first_child_matching_class(
+                docutils.nodes.docinfo,
+            )
+            topic_idx = doctree.first_child_matching_class(
+                docutils.nodes.topic,
+            )
+
+            f = StringIO()
+            v = Visitor(doctree, f)
+            ex = None
+            doctree.walkabout(v)
+
+            articles.append(Article(
+                urlname=fn,
+                title=v.title,
+                author=v.author,
+                summary=v.summary,
+                body=f.getvalue(),
+            ))
+
+    return articles
+
+
+def render_article(article, template_env, media_prefix):
+    base_tmpl = template_env.get_template("article.html")
+    return unicode(base_tmpl.render(
+        article=article,
+        media_prefix=media_prefix,
+    )).encode('utf8')
 
 
 def git_tree_for_dict(d, git_repo):
