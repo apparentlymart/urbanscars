@@ -1,5 +1,10 @@
 {% extends "base.html" %}
 
+{% block extrahead %}
+<meta name="description" content="{{ article.summary }}">
+<meta name="keywords" content="{{ article.keywords }}">
+{% endblock %}
+
 {% block htmltitle %}
 {{ article.title }} - Urban Scars
 {% endblock %}
@@ -7,13 +12,10 @@
 {% block main %}
 <article class="full">
   <div class="article-city">{{ article.city }}</div>
-  <div class="article-date">{{ article.date }}</div>
+  <div class="article-date">{{ article.date.strftime('%b %d %Y') }}</div>
   <div class="article-summary">
     <h1>{{ article.title }}</h1>
     <div class="article-byline">By <strong>{{ article.author }}</strong></div>
-    <p>
-      {{ article.summary }}
-    </p>
   </div>
   <div class="article-body">
     {{ article.body|safe }}

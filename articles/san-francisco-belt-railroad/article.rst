@@ -5,16 +5,10 @@ San Francisco Belt Railroad
 :Abstract: Despite two total revamps of the street layout, San
      Francisco's Embarcadero retains evidence of the Port of San Francisco's
      shortline freight railroad.
-
-.. meta::
-   :description: Despite two total revamps of the street layout, San
-     Francisco's Embarcadero retains evidence of the Port of San Francisco's
-     shortline freight railroad.
-   :keywords: railroad, State Belt Railroad, SBRR, SFBRR, Toonerville Trolley,
+:Date: 2012-09-03
+:City: San Francisco
+:Keywords: railroad, State Belt Railroad, SBRR, SFBRR, Toonerville Trolley,
      Wooden Axle Line
-   :city: San Francisco
-   :author: Martin Atkins
-   :date: 2012-09-03
 
 .. figure:: someimage.jpg
 

@@ -4,7 +4,7 @@ import sass
 import os
 import os.path
 import jinja2
-from datetime import datetime
+from datetime import datetime, date
 import time
 import docutils.core
 import docutils.nodes
@@ -93,7 +93,7 @@ def prepare_articles(articles_dir):
     articles = []
     items = os.listdir(articles_dir)
 
-    class Visitor(docutils.nodes.NodeVisitor):
+    class DocumentVisitor(docutils.nodes.NodeVisitor):
 
         def __init__(self, document, f):
             self.f = f
@@ -101,6 +101,9 @@ def prepare_articles(articles_dir):
             self.title = None
             self.author = None
             self.summary = None
+            self.date = None
+            self.city = None
+            self.document = document
             docutils.nodes.NodeVisitor.__init__(self, document)
 
         def eat(self, elem):
@@ -124,7 +127,12 @@ def prepare_articles(articles_dir):
         def visit_docinfo(self, docinfo):
             # FIXME: This should be more robust, not assume that
             # the author is always first
-            self.author = docinfo[0].astext()
+            dv = DocInfoVisitor(self.document)
+            docinfo.walkabout(dv)
+            self.author = dv.author
+            self.date = dv.date
+            self.city = dv.city
+            self.keywords = dv.keywords
             raise docutils.nodes.SkipNode
 
         def visit_topic(self, topic):
@@ -178,6 +186,39 @@ def prepare_articles(articles_dir):
             ))
             raise docutils.nodes.SkipNode
 
+    class DocInfoVisitor(docutils.nodes.NodeVisitor):
+        def __init__(self, document):
+            self.date = None
+            self.author = None
+            self.city = None
+            self.keywords = None
+            docutils.nodes.NodeVisitor.__init__(self, document)
+
+        def visit_docinfo(self, docinfo):
+            pass
+        def depart_docinfo(self, docinfo):
+            pass
+
+        def visit_author(self, author):
+            self.author = author.astext()
+            raise docutils.nodes.SkipNode
+
+        def visit_date(self, date):
+            self.date = datetime.strptime(date.astext(), "%Y-%m-%d").date()
+            raise docutils.nodes.SkipNode
+
+        def visit_field(self, field):
+            name = field[0].astext()
+            value = field[1].astext()
+
+            if name == "City":
+                self.city = value
+            elif name == "Keywords":
+                self.keywords = value
+
+            raise docutils.nodes.SkipNode
+
+
     for fn in items:
         full_fn = os.path.join(articles_dir, fn)
         if os.path.isdir(full_fn):
@@ -195,7 +236,7 @@ def prepare_articles(articles_dir):
             )
 
             f = StringIO()
-            v = Visitor(doctree, f)
+            v = DocumentVisitor(doctree, f)
             ex = None
             doctree.walkabout(v)
 
@@ -206,6 +247,9 @@ def prepare_articles(articles_dir):
                 summary=v.summary,
                 body=f.getvalue(),
                 url="/%s/" % fn,
+                city=v.city,
+                date=v.date,
+                keywords=v.keywords,
             ))
 
     return articles
