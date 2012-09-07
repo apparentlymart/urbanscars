@@ -13,7 +13,7 @@ San Francisco Belt Railroad
 
 .. figure:: trainunderbaybridge.jpg
 
-   State Belt Railroad locomotive while cargo is unloaded
+   A State Belt Railroad locomotive waits while cargo is unloaded
    onto a ship bound for China.
 
    `Photo by Drew Jacksich <http://www.flickr.com/photos/28101583@N07/4190927547/>`_
@@ -25,12 +25,14 @@ Maecenas ac odio eu elit ullamcorper ullamcorper at ac est. Pellentesque tristiq
 Decline
 -------
 
-.. figure:: someimage.jpg
+.. figure:: newrestaurants.jpg
    :figclass: float
 
-   This is a nice image with a caption.
+   This former track onto pier 3 is now a locomotive-sized pedestrian
+   access for the public shore, several restaurants, and the
+   boarding area for a cruise ship company.
 
-   Source: Wherever this came from
+   Photo by Martin Atkins
 
 Aliquam ultrices nunc ut ligula dapibus ut sodales nisl faucibus. Pellentesque faucibus euismod condimentum. Aenean scelerisque blandit odio, nec elementum dui pretium eget. Curabitur adipiscing tempor orci, eu tincidunt purus ornare et. Sed scelerisque interdum justo vitae tincidunt. Morbi dui sapien, porta eget porttitor sodales, tincidunt quis augue. Aenean lectus velit, egestas in adipiscing non, mattis eget enim. Duis vulputate purus id justo eleifend porta. In hac habitasse platea dictumst. Integer purus lectus, bibendum vitae congue in, cursus at magna. Morbi ultrices ante quis risus dignissim dictum. Donec pharetra, magna eu tincidunt rhoncus, metus mi ornare nisl, sed convallis felis lacus vitae sem. Quisque interdum semper lorem sit amet posuere. Phasellus tincidunt porta risus, non pharetra quam egestas vel. Nulla ac nisi massa. Mauris non iaculis eros.
 
