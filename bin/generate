@@ -41,6 +41,7 @@ def main():
             template_env,
             media_prefix,
         )
+        render_article_images(article, article_dict)
         root[article.urlname] = article_dict
 
     root["index.html"] = render_index(articles, template_env, media_prefix)
@@ -84,9 +85,19 @@ def copy_media(media_dir):
 
 
 class Article(object):
-
     def __init__(self, **kwargs):
         self.__dict__.update(kwargs)
+
+
+class ArticleImage(object):
+    def __init__(self, source_fn, required_width):
+        self.source_fn = source_fn
+        self.required_width = required_width
+
+    @property
+    def target_fn(self):
+        (basename, ext) = os.path.splitext(self.source_fn)
+        return "%s_%i.jpg" % (basename, self.required_width)
 
 
 def prepare_articles(articles_dir):
@@ -104,6 +115,9 @@ def prepare_articles(articles_dir):
             self.date = None
             self.city = None
             self.document = document
+            self.main_image_fn = None
+            self.images = {}
+            self.in_floaty_figure = False
             docutils.nodes.NodeVisitor.__init__(self, document)
 
         def eat(self, elem):
@@ -133,6 +147,13 @@ def prepare_articles(articles_dir):
             self.date = dv.date
             self.city = dv.city
             self.keywords = dv.keywords
+            if dv.main_image is not None:
+                image = ArticleImage(
+                    source_fn=dv.main_image,
+                    required_width=600,
+                )
+                self.main_image_fn = image.target_fn
+                self.images[image.target_fn] = image
             raise docutils.nodes.SkipNode
 
         def visit_topic(self, topic):
@@ -151,8 +172,13 @@ def prepare_articles(articles_dir):
             classes = figure["classes"]
             if len(classes) > 0:
                 self.f.write(' class="%s"' % " ".join(classes))
+
+            if "float" in classes:
+                self.in_floaty_figure = True
+
             self.f.write(">")
         def depart_figure(self, figure):
+            self.in_floaty_figure = False
             self.f.write("</figure>")
 
         def visit_paragraph(self, p):
@@ -172,7 +198,18 @@ def prepare_articles(articles_dir):
             self.heading_level = self.heading_level - 1
 
         def visit_image(self, image):
-            self.f.write("<img src=\"%s\">" % image["uri"])
+            source_fn = image["uri"]
+            if self.in_floaty_figure:
+                width = 290
+            else:
+                width = 600
+
+            image = ArticleImage(
+                source_fn=source_fn,
+                required_width=width,
+            )
+            self.images[image.target_fn] = image
+            self.f.write("<img src=\"%s\">" % image.target_fn)
         depart_image = ignore
 
         def visit_caption(self, caption):
@@ -192,6 +229,7 @@ def prepare_articles(articles_dir):
             self.author = None
             self.city = None
             self.keywords = None
+            self.main_image = None
             docutils.nodes.NodeVisitor.__init__(self, document)
 
         def visit_docinfo(self, docinfo):
@@ -215,6 +253,8 @@ def prepare_articles(articles_dir):
                 self.city = value
             elif name == "Keywords":
                 self.keywords = value
+            elif name == "Main Image":
+                self.main_image = value
 
             raise docutils.nodes.SkipNode
 
@@ -250,6 +290,9 @@ def prepare_articles(articles_dir):
                 city=v.city,
                 date=v.date,
                 keywords=v.keywords,
+                images=v.images.values(),
+                source_dir=full_fn,
+                main_image_url="/%s/%s" % (fn, v.main_image_fn),
             ))
 
     return articles
@@ -261,6 +304,24 @@ def render_article(article, template_env, media_prefix):
         article=article,
         media_prefix=media_prefix,
     )).encode('utf8')
+
+
+def render_article_images(article, articles_dict):
+    from PIL import Image
+    for image in article.images:
+        source_path = os.path.join(article.source_dir, image.source_fn)
+        try:
+            im = Image.open(source_path)
+        except IOError, ex:
+            print "Failed to load image %s for article at %s: %s" % (
+                image.source_fn, article.url, ex,
+            )
+            continue
+
+        im.thumbnail((image.required_width, 5000), Image.ANTIALIAS)
+        f = StringIO()
+        im.save(f, "JPEG")
+        articles_dict[str(image.target_fn)] = f.getvalue()
 
 
 def render_index(articles, template_env, media_prefix):
