@@ -9,12 +9,14 @@ San Francisco Belt Railroad
 :City: San Francisco
 :Keywords: railroad, State Belt Railroad, SBRR, SFBRR, Toonerville Trolley,
      Wooden Axle Line
+:Main Image: trainunderbaybridge.jpg
 
-.. figure:: someimage.jpg
+.. figure:: trainunderbaybridge.jpg
 
-   This is a nice image with a caption.
+   State Belt Railroad locomotive while cargo is unloaded
+   onto a ship bound for China.
 
-   Source: Wherever this came from
+   `Photo by Drew Jacksich <http://www.flickr.com/photos/28101583@N07/4190927547/>`_
 
 Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed lacinia, tellus id dictum aliquet, lectus ligula tincidunt arcu, sed tincidunt neque diam tempus elit. Maecenas sed massa vel purus adipiscing congue. Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Cras sit amet justo vel eros tincidunt iaculis quis ut nunc. Donec ultricies eros at lectus pellentesque aliquam eu ac elit. Vivamus elementum tempor lacinia. Proin faucibus volutpat hendrerit. Sed et risus at justo cursus aliquam. Quisque euismod magna et risus euismod quis egestas justo vulputate. Suspendisse eu nisl at felis venenatis tempor. Praesent imperdiet nunc a velit lobortis euismod. Sed est massa, porttitor quis condimentum a, faucibus sed libero. Pellentesque ultrices, nunc non aliquam dignissim, nisi nulla mattis quam, at scelerisque lorem arcu eget augue. Proin ac ipsum in urna bibendum accumsan. Morbi mauris tellus, adipiscing eget porttitor adipiscing, dapibus sit amet nulla. Sed sodales accumsan metus, id mattis urna venenatis in.
 
