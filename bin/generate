@@ -43,8 +43,7 @@ def main():
         )
         root[article.urlname] = article_dict
 
-    base_tmpl = template_env.get_template("base.html")
-    root["index.html"] = str(base_tmpl.render(media_prefix=media_prefix))
+    root["index.html"] = render_index(articles, template_env, media_prefix)
     root["CNAME"] = "urbanscars.com"
 
     root_tree = git_tree_for_dict(root, git_repo)
@@ -206,15 +205,29 @@ def prepare_articles(articles_dir):
                 author=v.author,
                 summary=v.summary,
                 body=f.getvalue(),
+                url="/%s/" % fn,
             ))
 
     return articles
 
 
 def render_article(article, template_env, media_prefix):
-    base_tmpl = template_env.get_template("article.html")
-    return unicode(base_tmpl.render(
+    tmpl = template_env.get_template("article.html")
+    return unicode(tmpl.render(
         article=article,
+        media_prefix=media_prefix,
+    )).encode('utf8')
+
+
+def render_index(articles, template_env, media_prefix):
+    tmpl = template_env.get_template("index.html")
+    hero = articles[0]
+    main_articles = articles[1:]
+    scratches_articles = []
+    return unicode(tmpl.render(
+        hero=hero,
+        main_articles=main_articles,
+        scratches_articles=scratches_articles,
         media_prefix=media_prefix,
     )).encode('utf8')
 

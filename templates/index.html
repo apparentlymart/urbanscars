@@ -1,0 +1,51 @@
+{% extends "base.html" %}
+
+{% block main %}
+<article class="hero" style="background-image: url({{ hero.main_image_url }});">
+  <div class="article-summary">
+    <h2><a href="{{ hero.url }}">{{ hero.title }}</a></h2>
+    <p>
+      {{ hero.summary }}
+    </p>
+  </div>
+  <div class="article-city">{{ hero.city }}</div>
+  <a href="{{ hero.url }}" class="article-link">Read More</a>
+</article>
+
+<ul class="article-toplist">
+  {% for article in main_articles %}
+  <li>
+    <div class="article-photo" style="background-image: url({{ article.main_image_url }});">
+      <a href="{{ article.url }}"></a>
+    </div>
+    <div class="article-summary">
+      <h3><a href="{{ article.url }}">{{ article.title }}</a></h3>
+      <p>
+        {{ article.summary }}
+      </p>
+    </div>
+    <div class="article-city">{{ article.city }}</div>
+  </li>
+  {% endfor %}
+</ul>
+{% endblock %}
+
+{% block sidebar %}
+{% if scratches_articles %}
+<section class="sidebar">
+  <h2>Little Scratches</h2>
+  <ul class="article-minilist">
+    {% for article in scratches_articles %}
+    <li>
+      <div class="article-photo" style="background-image: url({{ article.main_image_url }});">
+        <a href="{{ article.url }}"></a>
+      </div>
+      <div class="article-summary">
+        <h3><a href="{{ article.url }}">{{ article.title }}</a></h3>
+      </div>
+    </li>
+    {% endfor %}
+  </ul>
+</section>
+{% endif %}
+{% endblock %}
