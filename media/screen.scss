@@ -349,6 +349,11 @@ article.full {
                 padding: $spacing / 2;
                 a {
                     color: $darkbox-fg-color;
+                    text-decoration: underline;
+                }
+                p {
+                    margin: 0;
+                    padding: 0;
                 }
             }
 

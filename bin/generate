@@ -223,10 +223,9 @@ def prepare_articles(articles_dir):
             self.f.write("</figcaption>")
 
         def visit_legend(self, legend):
-            self.f.write('<div class="attrib">%s</div>' % (
-                str(legend.astext().encode('utf8'))
-            ))
-            raise docutils.nodes.SkipNode
+            self.f.write('<div class="attrib">')
+        def depart_legend(self, legend):
+            self.f.write('</div>')
 
         def visit_emphasis(self, em):
             self.f.write("<em>")
