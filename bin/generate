@@ -230,6 +230,10 @@ def prepare_articles(articles_dir):
         def depart_emphasis(self, em):
             self.f.write("</em>")
 
+        def visit_reference(self, ref):
+            print ref
+            raise docutils.nodes.SkipNode
+
         def visit_system_message(self, message):
             print message.astext()
             raise docutils.nodes.SkipNode
