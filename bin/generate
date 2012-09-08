@@ -225,6 +225,11 @@ def prepare_articles(articles_dir):
             ))
             raise docutils.nodes.SkipNode
 
+        def visit_emphasis(self, em):
+            self.f.write("<em>")
+        def depart_emphasis(self, em):
+            self.f.write("</em>")
+
     class DocInfoVisitor(docutils.nodes.NodeVisitor):
         def __init__(self, document):
             self.date = None
