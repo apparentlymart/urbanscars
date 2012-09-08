@@ -121,6 +121,7 @@ def prepare_articles(articles_dir):
             self.images = {}
             self.in_floaty_figure = False
             self.keywords = None
+            self.section = None
             docutils.nodes.NodeVisitor.__init__(self, document)
 
         def eat(self, elem):
@@ -150,6 +151,7 @@ def prepare_articles(articles_dir):
             self.date = dv.date
             self.city = dv.city
             self.keywords = dv.keywords
+            self.section = dv.section
             if dv.main_image is not None:
                 image = ArticleImage(
                     source_fn=dv.main_image,
@@ -268,6 +270,7 @@ def prepare_articles(articles_dir):
             self.city = None
             self.keywords = None
             self.main_image = None
+            self.section = None
             docutils.nodes.NodeVisitor.__init__(self, document)
 
         def visit_docinfo(self, docinfo):
@@ -293,6 +296,8 @@ def prepare_articles(articles_dir):
                 self.keywords = value
             elif name == "Main Image":
                 self.main_image = value
+            elif name == "Section":
+                self.section = value
 
             raise docutils.nodes.SkipNode
 
@@ -339,7 +344,10 @@ def prepare_articles(articles_dir):
                 images=v.images.values(),
                 source_dir=full_fn,
                 main_image_url="/%s/%s" % (fn, v.main_image_fn),
+                section=v.section,
             ))
+
+    articles.sort(key=lambda a : a.date, reverse=True)
 
     return articles
 
@@ -372,9 +380,10 @@ def render_article_images(article, articles_dict):
 
 def render_index(articles, template_env, media_prefix):
     tmpl = template_env.get_template("index.html")
-    hero = articles[0]
-    main_articles = articles[1:]
-    scratches_articles = []
+    main_articles = [x for x in articles if x.section is None]
+    hero = main_articles[0]
+    main_articles = main_articles[1:]
+    scratches_articles = [x for x in articles if x.section == "scratches"]
     return unicode(tmpl.render(
         hero=hero,
         main_articles=main_articles,
