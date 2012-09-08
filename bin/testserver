@@ -19,6 +19,8 @@ types = {
     'jpeg': 'image/jpeg',
     'html': 'text/html',
     'js': 'text/javascript',
+    'xml': 'application/xml',
+    'txt': 'text/plain',
 }
 
 

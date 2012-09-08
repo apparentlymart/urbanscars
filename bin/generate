@@ -45,6 +45,8 @@ def main():
         root[article.urlname] = article_dict
 
     root["index.html"] = render_index(articles, template_env, media_prefix)
+    root["sitemap.xml"] = render_sitemap_xml(articles, template_env)
+    root["robots.txt"] = "Sitemap: http://urbanscars.com/sitemap.xml\n"
     root["CNAME"] = "urbanscars.com"
 
     root_tree = git_tree_for_dict(root, git_repo)
@@ -334,6 +336,13 @@ def render_index(articles, template_env, media_prefix):
         main_articles=main_articles,
         scratches_articles=scratches_articles,
         media_prefix=media_prefix,
+    )).encode('utf8')
+
+
+def render_sitemap_xml(articles, template_env):
+    tmpl = template_env.get_template("sitemap.xml")
+    return unicode(tmpl.render(
+        articles=articles,
     )).encode('utf8')
 
 
