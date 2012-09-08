@@ -1,5 +1,12 @@
 {% extends "base.html" %}
 
+{% block extrahead %}
+<meta property="og:title" content="Urban Scars">
+<meta property="og:type" content="website">
+<meta property="og:description"
+      content="The history revealed in those little quirks in our cities.">
+{% endblock %}
+
 {% block main %}
 <article class="hero" style="background-image: url({{ hero.main_image_url }});">
   <div class="article-summary">
