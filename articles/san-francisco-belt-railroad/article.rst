@@ -18,12 +18,64 @@ San Francisco Belt Railroad
 
    `Photo by Drew Jacksich <http://www.flickr.com/photos/28101583@N07/4190927547/>`_
 
-Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed lacinia, tellus id dictum aliquet, lectus ligula tincidunt arcu, sed tincidunt neque diam tempus elit. Maecenas sed massa vel purus adipiscing congue. Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Cras sit amet justo vel eros tincidunt iaculis quis ut nunc. Donec ultricies eros at lectus pellentesque aliquam eu ac elit. Vivamus elementum tempor lacinia. Proin faucibus volutpat hendrerit. Sed et risus at justo cursus aliquam. Quisque euismod magna et risus euismod quis egestas justo vulputate. Suspendisse eu nisl at felis venenatis tempor. Praesent imperdiet nunc a velit lobortis euismod. Sed est massa, porttitor quis condimentum a, faucibus sed libero. Pellentesque ultrices, nunc non aliquam dignissim, nisi nulla mattis quam, at scelerisque lorem arcu eget augue. Proin ac ipsum in urna bibendum accumsan. Morbi mauris tellus, adipiscing eget porttitor adipiscing, dapibus sit amet nulla. Sed sodales accumsan metus, id mattis urna venenatis in.
+As of its incorporation in 1850, San Franciso's waterfront had many commercial
+wharves, but the natural profile of the shoreline was steep and jagged, making it
+difficult to access by both land and sea. In 1863 the Board of State Harbor
+Commisioners set about bringing a more consistent shoreline to the San Francisco
+waterfront via the construction of a seawall, which eventually created the smooth,
+flat contour of today's Embarcadero.
 
-Maecenas ac odio eu elit ullamcorper ullamcorper at ac est. Pellentesque tristique, dui ut consectetur adipiscing, nulla enim feugiat lacus, non fermentum tortor nulla ac dolor. Vestibulum accumsan fermentum massa non vehicula. Maecenas sit amet eros ornare lorem consectetur rutrum. Fusce sodales eleifend lectus quis commodo. Donec eget nulla erat. Mauris viverra auctor arcu, vel laoreet erat dictum non. Nullam eget leo libero, at sollicitudin risus. Ut ante est, tincidunt in convallis nec, imperdiet quis turpis.
+The *State Belt Railroad* was founded in 1889 to connect the wharves of the
+Port of San Francisco with several regional railroads including the Western Pacific,
+the Santa Fe, and the Northwestern Pacific Railroads. Initially the State Belt
+had no direct rail connection to any other railroad, with freight cars instead
+being shipped by ferry barges launched from loading slips at Fisherman's Wharf.
 
-Decline
--------
+The State Belt would see its first direct rail connection much later, when in
+1913 the Southern Pacific Railroad, using the right of way now used by the Caltrain
+commuter rail service, connected with the port's rail line via an interchange at
+3rd and King streets.
+
+At its peak, the State Belt railroad had tracks spanning all the way from
+Crissy Field to China Basin, providing freight rail service to the military
+facilities in the Presidio and at Fort Mason as well as delivering materials needed
+for the construction of the 1915 Panama-Pacific World's Fair in what we now know as
+the Marina District.
+
+The move to container shipping on large barges led to a migration of port business
+to the Port of Oakland, and the State Belt's railroad operations began to wind
+down. Because the city's sea wall had extended the shoreline beyond what existed
+at the time of the city's incorporation, the Port had always been directly owned
+by the State of California, but in 1969 the Port and its railroad were transferred
+to City ownership and the railroad became known as the *San Francisco Belt Railroad*.
+
+The Embarcadero has seen two major redevelopments since the heyday of the
+Belt Railroad, first with the development of the double-deck Embarcadero freeway
+along a large portion of the shoreline, and then later with its destruction and
+the creation of the tree-lined boulevard we know as the Embarcadero today.
+As a consequence of these large development projects, little evidence of the
+former railroad remains in plain sight to those walking the San Francisco Bay Trail
+between the Ferry Building and Fisherman's Wharf, but small reminders persist
+to those who pay close attention.
+
+Several small parking lots occupy oddly-shaped blocks that skirt the inner curve
+of The Embarcadero, betraying the location of former storage yards and other
+facilities that supported the railroad. More conspicuous is the office building
+inside the elbow of Sansome St and the Embarcadero which began its life as
+the State Belt's car roundhouse, where cosmetic rails have been retained in its
+forecourt to commemorate its earlier pupose.
+
+Moving west, the evidence is more pronounced: the exposed rails still present
+in the pavement around Aquatic Park lead to the tunnel constructed under Fort Mason
+Park. Despite efforts to pave over the rails on the pathway just south of Marina
+Green, wear and tear has revealed the path that trains formerly took to reach Crissy
+Field and serve The Presidio.
+
+The railroad closed completely in 1993, after 20 years of operation by Kyle Railways
+under contract to the City. Several former State Belt locomotives can be seen in the
+collection at the Golden Gate Railway Museum in Hunter's Point, and the Muni Metro
+and historic streetcar service on The Embarcadero are ensuring that there will
+be rails of one form or another on The Embarcadeo for years to come.
 
 .. figure:: newrestaurants.jpg
    :figclass: float
@@ -34,9 +86,10 @@ Decline
 
    Photo by Martin Atkins
 
-Aliquam ultrices nunc ut ligula dapibus ut sodales nisl faucibus. Pellentesque faucibus euismod condimentum. Aenean scelerisque blandit odio, nec elementum dui pretium eget. Curabitur adipiscing tempor orci, eu tincidunt purus ornare et. Sed scelerisque interdum justo vitae tincidunt. Morbi dui sapien, porta eget porttitor sodales, tincidunt quis augue. Aenean lectus velit, egestas in adipiscing non, mattis eget enim. Duis vulputate purus id justo eleifend porta. In hac habitasse platea dictumst. Integer purus lectus, bibendum vitae congue in, cursus at magna. Morbi ultrices ante quis risus dignissim dictum. Donec pharetra, magna eu tincidunt rhoncus, metus mi ornare nisl, sed convallis felis lacus vitae sem. Quisque interdum semper lorem sit amet posuere. Phasellus tincidunt porta risus, non pharetra quam egestas vel. Nulla ac nisi massa. Mauris non iaculis eros.
 
-Proin et eleifend risus. Nunc non dictum risus. Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Proin condimentum, sapien rutrum varius cursus, neque tellus tristique diam, eu malesuada ipsum orci in erat. Duis at neque dolor, hendrerit ornare massa. Nullam mattis est nec orci semper pharetra. Praesent posuere enim at dolor mattis vitae feugiat arcu dignissim. Pellentesque habitant morbi tristique senectus et netus et malesuada fames ac turpis egestas. Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Sed sodales ante in tellus aliquam ornare. Nam suscipit pharetra enim non sollicitudin. Sed felis justo, mattis sit amet iaculis eu, condimentum in odio. Proin malesuada, nisl ac sodales ultrices, tellus diam laoreet tellus, suscipit bibendum nulla neque eget libero. Mauris nisi tellus, venenatis eget tincidunt eu, sagittis vitae tellus. Nunc imperdiet ipsum sed orci rhoncus pulvinar.
+References
+----------
 
-Mauris felis est, pretium sed vulputate id, pellentesque id nisl. Fusce eleifend purus eu leo venenatis semper. Phasellus rutrum, ligula nec elementum viverra, arcu enim vulputate sapien, eu ullamcorper eros eros non mauris. In hac habitasse platea dictumst. Nam leo nisi, condimentum non pulvinar a, mattis in tellus. Praesent auctor metus ut sapien mattis eu commodo elit dictum. Donec aliquam vehicula lectus. Nulla facilisi. Praesent ac lacinia libero. Sed sed augue risus.
-
+http://archived.ggrm.org/about_the_museum/history/statebelt.htm
+http://www.sfmuseum.org/hist8/beltrr.html
+http://www.abandonedrails.com/San_Francisco_Belt_Railroad
