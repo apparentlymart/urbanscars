@@ -114,12 +114,13 @@ def prepare_articles(articles_dir):
             self.title = None
             self.author = None
             self.summary = None
-            self.date = None
+            self.date = date.today()
             self.city = None
             self.document = document
             self.main_image_fn = None
             self.images = {}
             self.in_floaty_figure = False
+            self.keywords = None
             docutils.nodes.NodeVisitor.__init__(self, document)
 
         def eat(self, elem):
@@ -221,7 +222,7 @@ def prepare_articles(articles_dir):
 
         def visit_legend(self, legend):
             self.f.write('<div class="attrib">%s</div>' % (
-                legend.astext().encode('utf8')
+                str(legend.astext().encode('utf8'))
             ))
             raise docutils.nodes.SkipNode
 
@@ -231,8 +232,30 @@ def prepare_articles(articles_dir):
             self.f.write("</em>")
 
         def visit_reference(self, ref):
-            print ref
+            self.f.write("<a href=\"%s\">" % cgi.escape(ref["refuri"]))
+        def depart_reference(self, ref):
+            self.f.write("</a>")
+
+        def visit_field_list(self, fl):
+            print fl
             raise docutils.nodes.SkipNode
+
+        def visit_target(self, target):
+            print target
+            raise docutils.nodes.SkipNode
+
+        def visit_title_reference(self, tr):
+            print tr
+            raise docutils.nodes.SkipNode
+
+        def visit_bullet_list(self, list):
+            self.f.write("<ul>")
+        def depart_bullet_list(self, list):
+            self.f.write("</ul>")
+        def visit_list_item(self, li):
+            self.f.write("<li>")
+        def depart_list_item(self, li):
+            self.f.write("</li>")
 
         def visit_system_message(self, message):
             print message.astext()
@@ -295,12 +318,20 @@ def prepare_articles(articles_dir):
             ex = None
             doctree.walkabout(v)
 
+            # Make sure that all of the strings in the StringIO are
+            # byte strings encoded in UTF-8 so that we'll consistently
+            # get a UTF-8 encoded byte string out of the getvalue() function.
+            f.buflist = [
+                x.encode('utf8') if type(x) is unicode else x
+                for x in f.buflist
+            ]
+
             articles.append(Article(
                 urlname=fn,
                 title=v.title,
                 author=v.author,
                 summary=v.summary,
-                body=f.getvalue(),
+                body=f.getvalue().decode('utf8'),
                 url="/%s/" % fn,
                 city=v.city,
                 date=v.date,
