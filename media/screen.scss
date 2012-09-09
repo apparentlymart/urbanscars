@@ -15,8 +15,10 @@ $line-height: 2px * $multiplier;
 $main-width: 91px * $multiplier;
 $beta-width: 300px; /* Should always be 300 so it can fit a 300x250 ad unit */
 $alpha-width: $main-width - $beta-width - $spacing;
+$compressed-main-width: $alpha-width;
 $hero-width: $alpha-width;
 $hero-height: 45px * $multiplier;
+$tiny-hero-height: $hero-height / 2;
 $body-font-size: 0.6px * $line-height;
 $body-heading-font-size: 0.9px * $line-height;
 $hero-title-font-size: $line-height;
@@ -42,6 +44,8 @@ $header-logo-height: $header-height / 2;
 $header-logo-width: $header-logo-height * $header-logo-image-aspect;
 $header-logo-padding: ($header-height - $header-logo-height) / 2;
 $header-grad-height: $header-image-height * 0.625px;
+$compressed-header-height: $header-height / 2;
+$tiny-header-height: 75px;
 
 html, body {
     background: $surround-bg-color;
@@ -97,6 +101,41 @@ header {
             width: $header-logo-width;
         }
     }
+
+    // FIXME: The version of libsass I'm using doesn't yet support variable
+    // substitution in a media query. :(
+    // This is $main-width + $spacing + $spacing, where the spacings account
+    // for the padding on the main element.
+    @media (max-width: 930px) {
+
+        #logo {
+            width: $compressed-main-width;
+            padding: $spacing;
+        }
+        h1 {
+            margin: 0;
+            a {
+                width: auto;
+                height: $compressed-header-height - $spacing - $spacing;
+                margin: 0;
+            }
+        }
+    }
+    @media (max-width: 640px) {
+        height: $tiny-header-height;
+
+        #logo {
+            width: auto;
+        }
+        h1 {
+            a {
+                height: $tiny-header-height - $spacing - $spacing;
+            }
+        }
+        #grad {
+            display: none;
+        }
+    }
 }
 footer {
     display: block;
@@ -104,10 +143,20 @@ footer {
     margin: 0 auto;
     padding: $spacing 0;
     text-align: right;
-    font-size: $body-font-size / 0.9;
+    font-size: $body-font-size * 0.9;
 
     p {
         margin: 0;
+    }
+
+    @media (max-width: 930px) {
+        width: $compressed-main-width;
+    }
+    @media (max-width: 640px) {
+        width: auto;
+        margin-right: $spacing;
+        margin-left: $spacing;
+        text-align: center;
     }
 }
 
@@ -119,11 +168,27 @@ footer {
     margin-top: $header-height - $header-image-height;
     min-height: $header-image-height;
     position: relative;
+
+    @media (max-width: 930px) {
+        width: $compressed-main-width;
+        margin-top: $compressed-header-height - $header-image-height;
+    }
+    @media (max-width: 640px) {
+        width: auto;
+        margin-top: 0;
+    }
 }
 
 #alpha {
     float: left;
     width: $alpha-width;
+    @media (max-width: 930px) {
+        float: none;
+        width: $compressed-main-width;
+    }
+    @media (max-width: 640px) {
+        width: auto;
+    }
 }
 
 article.hero {
@@ -169,7 +234,7 @@ article.hero {
         background: $content-accent-color;
         border: 2px solid $content-accent-contrast-color;
         color: $content-accent-contrast-color;
-        border-radius: 10px;
+        border-radius: $spacing;
         font-size: $body-font-size;
     }
     .article-link {
@@ -180,6 +245,29 @@ article.hero {
         left: 0;
         right: 0;
         text-indent: -10000px;
+    }
+
+    @media (max-width: 640px) {
+        width: auto;
+        height: $tiny-hero-height;
+
+        .article-summary {
+            padding: $spacing;
+        }
+        .article-summary h2 {
+            font-size: $body-font-size;
+            font-weight: bold;
+        }
+        .article-summary p {
+            display: none;
+        }
+        .article-city {
+            left: auto;
+            right: -0.5px * $spacing;
+            top: -0.5px * $spacing;
+            padding: ($spacing / 2) - 2px;
+            border-radius: $spacing / 2;
+        }
     }
 }
 
@@ -250,6 +338,12 @@ article.hero {
 }
 .article-toplist {
     @include article-list($toplist-item-height, $toplist-item-image-aspect, $toplist-item-heading-font-size, $spacing / 2);
+    @media (max-width: 640px) {
+        @include article-list($minilist-item-height, $minilist-item-image-aspect, $minilist-item-heading-font-size, 0);
+        .article-summary p, .article-city {
+            display: none;
+        }
+    }
 }
 
 article.full {
@@ -263,7 +357,7 @@ article.full {
         background: $content-accent-color;
         border: 2px solid $content-accent-contrast-color;
         color: $content-accent-contrast-color;
-        border-radius: 10px;
+        border-radius: $spacing;
         font-size: $body-font-size;
     }
     .article-date {
@@ -373,6 +467,57 @@ article.full {
             }
         }
     }
+
+    @media (max-width: 640px) {
+        .article-city {
+            display: none;
+        }
+        .article-summary {
+            h1 {
+                margin-top: $spacing;
+            }
+        }
+        .article-date {
+            display: none;
+        }
+        .article-body {
+            padding: $spacing 0;
+
+            figure {
+                margin: $spacing 0;
+
+                figcaption {
+                    padding: $spacing / 2;
+                    font-size: 0.75em;
+                    line-height: auto;
+                }
+                .attrib {
+                    padding: $spacing / 4;
+                    font-size: 0.75em;
+                    line-height: auto;
+                }
+
+                &.float {
+                    float: none;
+                    width: auto;
+                    margin-left: 0;
+                    margin-bottom: $spacing;
+                    margin-top: $spacing;
+
+                    figcaption {
+                        padding: $spacing / 2;
+                        font-size: 0.75em;
+                        line-height: auto;
+                    }
+                    .attrib {
+                        padding: $spacing / 4;
+                        font-size: 0.75em;
+                        line-height: auto;
+                    }
+                }
+            }
+        }
+    }
 }
 
 #beta {
@@ -397,6 +542,27 @@ article.full {
         font-weight: bold;
         line-height: $line-height;
         padding: 0 $spacing;
+    }
+
+    @media (max-width: 930px) {
+        float: none;
+        width: $compressed-main-width;
+
+        .ad {
+            // Narrow screens get a pass on the ad for now, until I figure out
+            // what best to do with it.
+            display: none;
+        }
+
+        .sidebar {
+            width: $compressed-main-width;
+        }
+    }
+    @media (max-width: 640px) {
+        width: auto;
+        .sidebar {
+            width: auto;
+        }
     }
 }
 
