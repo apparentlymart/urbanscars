@@ -80,8 +80,8 @@ until the Transbay Transit Center is completed.
 
 .. figure:: 2ndstparkinglot.jpg
 
-   This corner parking lot, along with another parking lot out of site under the
-   US-101 deck in the distance, occupy the space previously taken up by the
+   This corner parking lot, along with another parking lot out of sight under
+   the US-101 deck in the distance, occupy the space previously taken up by the
    eastbound connection from US-101 to the Embarcadero Freeway.
 
    Photo by Martin Atkins
