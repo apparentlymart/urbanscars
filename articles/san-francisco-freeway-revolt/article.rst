@@ -97,7 +97,7 @@ until the Transbay Transit Center is completed.
 The Central Freeway was replaced by a boulevard that accommodates two lanes each way
 for access to the new freeway ramp at Octavia and Market Streets as well as
 one lane each way of bike-friendly local access streets. The freeway access lanes
-are separate from the local lanes by an attractive tree-lined median.
+are separated from the local lanes by an attractive tree-lined median.
 
 The portion of the Central Freeway north of Market St was originally constructed
 alongside Octavia St, which remained as a normal city street despite being
