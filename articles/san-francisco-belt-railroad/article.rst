@@ -99,7 +99,7 @@ The railroad closed completely in 1993, after 20 years of operation by Kyle Rail
 under contract to the City. Several former State Belt locomotives can be seen in the
 collection at the Golden Gate Railway Museum in Hunter's Point, and the Muni Metro
 and historic streetcar service on The Embarcadero are ensuring that there will
-be rails of one form or another on The Embarcadeo for years to come.
+be rails of one form or another on The Embarcadero for years to come.
 
 References
 ----------
