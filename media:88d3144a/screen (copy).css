@@ -1,0 +1,277 @@
+
+@font-face {
+    font-family: "Roadgeek D";
+    font-weight: normal;
+    src: url('media/roadgeekd.otf');
+}
+
+html, body {
+    background: #eeeeee;
+    color: #000000;
+    font-family: "Helvetica", "Arial", sans-serif;
+    margin: 0;
+    padding: 0;
+    font-size: 10px;
+}
+a:link, a:hover, a:visited {
+    color: rgb(0, 110, 85);
+    text-decoration: none;
+}
+
+header, article, section {
+    display: block;
+}
+
+header {
+    display: block;
+    background: url(images/headerbg.jpg);
+    height: 401px;
+    background-position: center;
+    position: relative;
+}
+header #logo {
+    width: 910px;
+    margin: 0 auto;
+    padding-top: 50px;
+}
+header #grad {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    top: 250px;
+    background: -moz-linear-gradient(top, rgba(238,238,238,0) 0%, rgba(238,238,238,1) 100%); /* FF3.6+ */
+    background: -webkit-gradient(linear, left top, left bottom, color-stop(0%,rgba(238,238,238,0)), color-stop(100%,rgba(238,238,238,1))); /* Chrome,Safari4+ */
+    background: -webkit-linear-gradient(top, rgba(238,238,238,0) 0%,rgba(238,238,238,1) 100%); /* Chrome10+,Safari5.1+ */
+    background: linear-gradient(to bottom, rgba(238,238,238,0) 0%,rgba(238,238,238,1) 100%); /* W3C */
+}
+header h1 {
+    margin: 0;
+    padding: 0;
+    margin-left: 40px;
+}
+header h1 a {
+    display: block;
+    text-indent: -10000px;
+    height: 100px;
+    background: url(images/logo.svg);
+    background-size: contain;
+    background-repeat: no-repeat;
+    width: 400px;
+}
+footer {
+    display: block;
+    width: 910px;
+    margin: 0 auto;
+    padding: 10px 0;
+    text-align: right;
+}
+footer p {
+    margin: 0;
+}
+
+#main {
+    background: #ffffff;
+    width: 910px;
+    margin: 0 auto;
+    padding: 10px;
+    margin-top: -200px;
+    min-height: 400px;
+    position: relative;
+}
+
+#alpha {
+    float: left;
+    width: 600px;
+}
+#beta {
+    float: right;
+    width: 300px;
+}
+#clear {
+    clear: both;
+}
+
+article.hero {
+    width: 600px;
+    height: 450px;
+    background-color: #aaaaaa;
+    background-size: cover;
+    position: relative;
+}
+
+article.hero .article-summary {
+    background: rgba(0, 0, 0, 0.30);
+    color: #ffffff;
+    padding: 20px;
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    top: auto;
+    font-size: 12px;
+    line-height: 20px;
+    text-align: justify;
+}
+article.hero .article-summary a {
+    color: #ffffff;
+}
+article.hero .article-summary h2, article.hero .article-summary p {
+    margin: 0;
+    padding: 0;
+}
+article.hero .article-summary h2 {
+    font-size: 20px;
+    font-weight: bold;
+}
+article.hero .article-summary p {
+    margin-top: 10px;
+}
+article.hero .article-city {
+    position: absolute;
+    left: -20px;
+    top: 10px;
+    padding: 8px;
+    background: rgb(0, 110, 85);
+    border: 2px solid #ffffff;
+    color: #ffffff;
+    border-radius: 10px;
+    font-size: 12px;
+}
+article.hero .article-link {
+    display: block;
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    text-indent: -10000px;
+}
+
+.article-toplist, .article-toplist li {
+    margin: 0;
+    padding: 0;
+    list-style: none;
+}
+.article-toplist {
+    padding-top: 9px;
+    margin-top: 9px;
+    border-top: 2px solid #dddddd;
+}
+.article-toplist li {
+    height: 100px;
+    padding-bottom: 9px;
+    margin-bottom: 9px;
+    border-bottom: 2px solid #dddddd;
+    position: relative;
+}
+.article-toplist .article-photo {
+    height: 100px;
+    width: 150px;
+    margin-right: 10px;
+    margin-left: 10px;
+    float: left;
+    background-color: #dddddd;
+    background-size: cover;
+}
+.article-toplist .article-photo a {
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+}
+.article-toplist .article-summary {
+    padding-right: 10px;
+    text-align: justify;
+}
+.article-toplist .article-summary h3 {
+    margin: 0;
+    padding: 0;
+    line-height: 20px;
+    font-size: 18px;
+    font-weight: bold;
+    padding-top: 5px;
+}
+.article-toplist .article-summary p {
+    line-height: 20px;
+    font-size: 12px;
+    margin: 0;
+    padding: 0;
+    margin-top: 10px;
+}
+.article-toplist .article-city {
+    position: absolute;
+    left: -5px;
+    top: 5px;
+    padding: 4px;
+    background: rgb(0, 110, 85);
+    border: 2px solid #ffffff;
+    color: #ffffff;
+    border-radius: 5px;
+    font-size: 10px;
+}
+
+#beta .ad {
+    width: 300px;
+    height: 250px;
+    margin-bottom: 20px;
+    background: #dddddd;
+}
+#beta .sidebar {
+    width: 300px;
+    line-height: 20px;
+}
+#beta .sidebar h2 {
+    margin: 0;
+    padding: 0;
+    font-size: 16px;
+    font-weight: bold;
+    line-height: 20px;
+    padding: 0 10px;
+}
+.article-minilist, .article-minilist li {
+    margin: 0;
+    padding: 0;
+    list-style: none;
+}
+.article-minilist {
+    padding-top: 9px;
+    margin-top: 9px;
+    border-top: 2px solid #dddddd;
+}
+.article-minilist li {
+    height: 60px;
+    padding-bottom: 9px;
+    margin-bottom: 9px;
+    border-bottom: 2px solid #dddddd;
+    position: relative;
+}
+.article-minilist .article-photo {
+    height: 60px;
+    width: 70px;
+    margin-right: 10px;
+    margin-left: 10px;
+    float: left;
+    background-color: #dddddd;
+    background-size: cover;
+}
+.article-minilist .article-photo a {
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+}
+.article-minilist .article-summary {
+    padding-right: 10px;
+}
+.article-minilist .article-summary h3 {
+    margin: 0;
+    padding: 0;
+    line-height: 20px;
+    font-size: 12px;
+    font-weight: bold;
+    text-align: justify;
+}
+

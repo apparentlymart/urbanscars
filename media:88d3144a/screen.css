@@ -1,0 +1,511 @@
+/* Should always be 300 so it can fit a 300x250 ad unit */
+/* Physical characteristics of the header imagery */
+/* Header dimensions derived from the physical image sizes */
+html, body {
+  background: #eeeeee;
+  color: black;
+  font-family: "Helvetica", "Arial", sans-serif;
+  margin: 0;
+  padding: 0;
+  font-size: 12px; }
+
+a:link, a:hover, a:visited {
+  color: #006e55;
+  text-decoration: none; }
+
+header, article, section {
+  display: block; }
+
+header {
+  display: block;
+  background: url("images/headerbg.jpg");
+  height: 400px;
+  background-position: center;
+  position: relative; }
+  header #logo {
+    width: 910px;
+    margin: 0 auto;
+    padding-top: 50px; }
+  header #grad {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    top: 150px;
+    background: -moz-linear-gradient(top, rgba(238, 238, 238, 0) 0%, #eeeeee 100%);
+    background: -webkit-gradient(linear, left top, left bottom, color-stop(0%, rgba(238, 238, 238, 0)), color-stop(100%, #eeeeee));
+    background: -webkit-linear-gradient(top, rgba(238, 238, 238, 0) 0%, #eeeeee 100%);
+    background: linear-gradient(to bottom, rgba(238, 238, 238, 0) 0%, #eeeeee 100%); }
+  header h1 {
+    margin: 0;
+    padding: 0;
+    margin-left: 40px; }
+    header h1 a {
+      display: block;
+      text-indent: -10000px;
+      height: 100px;
+      background: url("images/logo.svg");
+      background-size: contain;
+      background-repeat: no-repeat;
+      width: 397.727px; }
+  @media (max-width: 930px) {
+    header #logo {
+      width: 600px;
+      padding: 10px; }    header h1 {
+      margin: 0; }
+      header h1 a {
+        width: auto;
+        height: 80px;
+        margin: 0; } }
+  @media (max-width: 640px) {
+    header {
+      height: 75px; }
+      header #logo {
+        width: auto; }      header h1 a {
+        height: 55px; }      header #grad {
+        display: none; } }
+
+footer {
+  display: block;
+  width: 910px;
+  margin: 0 auto;
+  padding: 10px 0;
+  text-align: right;
+  font-size: 10.8px; }
+  footer p {
+    margin: 0; }
+  @media (max-width: 930px) {
+    footer {
+      width: 600px; } }
+  @media (max-width: 640px) {
+    footer {
+      width: auto;
+      margin-right: 10px;
+      margin-left: 10px;
+      text-align: center; } }
+
+#main {
+  background: white;
+  width: 910px;
+  margin: 0 auto;
+  padding: 10px;
+  margin-top: -200px;
+  min-height: 400px;
+  position: relative; }
+  @media (max-width: 930px) {
+    #main {
+      width: 600px;
+      margin-top: -300px; } }
+  @media (max-width: 640px) {
+    #main {
+      width: auto;
+      margin-top: 0; } }
+
+#alpha {
+  float: left;
+  width: 600px; }
+  @media (max-width: 930px) {
+    #alpha {
+      float: none;
+      width: 600px; } }
+  @media (max-width: 640px) {
+    #alpha {
+      width: auto; } }
+
+article.hero {
+  width: 600px;
+  height: 450px;
+  background-color: #dddddd;
+  background-size: cover;
+  position: relative; }
+  article.hero .article-summary {
+    background: rgba(0, 0, 0, 0.7);
+    color: white;
+    padding: 20px;
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    top: auto;
+    font-size: 12px;
+    line-height: 20px;
+    text-align: justify; }
+  article.hero .article-summary a {
+    color: white; }
+  article.hero .article-summary h2, article.hero article.hero .article-summary p {
+    margin: 0;
+    padding: 0; }
+  article.hero .article-summary h2 {
+    font-size: 20px;
+    font-weight: bold; }
+  article.hero .article-summary p {
+    margin: 0;
+    margin-top: 10px; }
+  article.hero .article-city {
+    position: absolute;
+    left: -20px;
+    top: 10px;
+    padding: 8px;
+    background: #006e55;
+    border: 2px solid white;
+    color: white;
+    border-radius: 10px;
+    font-size: 12px; }
+  article.hero .article-link {
+    display: block;
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    text-indent: -10000px; }
+  @media (max-width: 640px) {
+    article.hero {
+      width: auto;
+      height: 225px; }
+      article.hero .article-summary {
+        padding: 10px; }      article.hero .article-summary h2 {
+        font-size: 12px;
+        font-weight: bold; }      article.hero .article-summary p {
+        display: none; }      article.hero .article-city {
+        left: auto;
+        right: -5px;
+        top: -5px;
+        padding: 3px;
+        border-radius: 5px; } }
+
+.article-toplist, .article-toplist li {
+  margin: 0;
+  padding: 0;
+  list-style: none; }
+
+.article-toplist {
+  padding-top: 9px;
+  margin-top: 9px;
+  border-top: 2px solid #dddddd; }
+  .article-toplist li {
+    height: 100px;
+    padding-bottom: 9px;
+    margin-bottom: 9px;
+    border-bottom: 2px solid #dddddd;
+    position: relative; }
+  .article-toplist .article-photo {
+    height: 100px;
+    width: 150px;
+    margin-right: 10px;
+    margin-left: 10px;
+    float: left;
+    background-color: #dddddd;
+    background-size: cover; }
+  .article-toplist .article-photo a {
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0; }
+  .article-toplist .article-summary {
+    padding-right: 10px;
+    text-align: justify; }
+  .article-toplist .article-summary h3, .article-toplist .article-summary h2 {
+    margin: 0;
+    padding: 0;
+    line-height: 20px;
+    font-size: 18px;
+    font-weight: bold;
+    padding-top: 5px; }
+  .article-toplist .article-summary p {
+    line-height: 20px;
+    font-size: 12px;
+    margin: 0;
+    padding: 0;
+    margin-top: 10px; }
+  .article-toplist .article-city {
+    position: absolute;
+    left: -5px;
+    top: 5px;
+    padding: 4px;
+    background: #006e55;
+    border: 2px solid white;
+    color: white;
+    border-radius: 5px;
+    font-size: 10px; }
+  @media (max-width: 640px) {
+    .article-toplist {
+      padding-top: 9px;
+      margin-top: 9px;
+      border-top: 2px solid #dddddd; }
+      .article-toplist li {
+        height: 60px;
+        padding-bottom: 9px;
+        margin-bottom: 9px;
+        border-bottom: 2px solid #dddddd;
+        position: relative; }      .article-toplist .article-photo {
+        height: 60px;
+        width: 70.02px;
+        margin-right: 10px;
+        margin-left: 10px;
+        float: left;
+        background-color: #dddddd;
+        background-size: cover; }      .article-toplist .article-photo a {
+        position: absolute;
+        top: 0;
+        left: 0;
+        right: 0;
+        bottom: 0; }      .article-toplist .article-summary {
+        padding-right: 10px;
+        text-align: justify; }      .article-toplist .article-summary h3, .article-toplist .article-summary h2 {
+        margin: 0;
+        padding: 0;
+        line-height: 20px;
+        font-size: 12px;
+        font-weight: bold;
+        padding-top: 0; }      .article-toplist .article-summary p {
+        line-height: 20px;
+        font-size: 12px;
+        margin: 0;
+        padding: 0;
+        margin-top: 10px; }      .article-toplist .article-city {
+        position: absolute;
+        left: -5px;
+        top: 5px;
+        padding: 4px;
+        background: #006e55;
+        border: 2px solid white;
+        color: white;
+        border-radius: 5px;
+        font-size: 10px; }      .article-toplist .article-summary p, .article-toplist .article-city {
+        display: none; } }
+
+article.full {
+  display: block; }
+  article.full .article-city {
+    position: absolute;
+    left: -20px;
+    top: 10px;
+    padding: 8px;
+    background: #006e55;
+    border: 2px solid white;
+    color: white;
+    border-radius: 10px;
+    font-size: 12px; }
+  article.full .article-date {
+    margin: 0;
+    text-align: right;
+    padding-top: 10px;
+    padding-bottom: 10px; }
+  article.full .article-summary {
+    text-align: justify;
+    padding-bottom: 9px;
+    margin-bottom: -5px;
+    /* The body elements all provide top margin, but it compounds with the divider spacing so we have to counteract it here.  */
+    border-bottom: 2px solid #dddddd; }
+    article.full .article-summary h1 {
+      margin: 0;
+      margin-top: 20px;
+      font-size: 20px;
+      line-height: 20px; }
+    article.full .article-summary p {
+      line-height: 20px;
+      font-size: 12px;
+      margin: 0;
+      margin-top: 10px;
+      display: none; }
+    article.full .article-summary .article-byline {
+      line-height: 20px; }
+  article.full .article-body {
+    padding: 10px;
+    padding-bottom: 9px;
+    margin-bottom: 9px;
+    border-bottom: 2px solid #dddddd; }
+    article.full .article-body p {
+      line-height: 20px;
+      margin: 10px 0;
+      text-align: justify; }
+    article.full .article-body h2 {
+      line-height: 20px;
+      font-weight: bold;
+      font-size: 18px;
+      text-align: justify; }
+    article.full .article-body figure {
+      margin: 10px -10px;
+      padding: 0;
+      position: relative; }
+      article.full .article-body figure img {
+        width: 100%;
+        vertical-align: bottom; }
+      article.full .article-body figure figcaption {
+        margin: 0;
+        position: absolute;
+        top: auto;
+        bottom: 0;
+        left: 0;
+        right: 0;
+        background: rgba(0, 0, 0, 0.7);
+        color: white;
+        padding: 10px;
+        line-height: 20px; }
+      article.full .article-body figure .attrib {
+        position: absolute;
+        font-size: 0.9em;
+        top: 0;
+        right: 0;
+        left: auto;
+        bottom: auto;
+        width: auto;
+        color: white;
+        background: rgba(0, 0, 0, 0.7);
+        padding: 5px; }
+        article.full .article-body figure .attrib a {
+          color: white;
+          text-decoration: underline; }
+        article.full .article-body figure .attrib p {
+          margin: 0;
+          padding: 0; }
+      article.full .article-body figure.float {
+        float: right;
+        width: 50%;
+        margin-left: 20px;
+        margin-bottom: 20px;
+        margin-top: 6px; }
+        article.full .article-body figure.float figcaption {
+          padding: 5px 10px; }
+        article.full .article-body figure.float .attrib {
+          font-size: 0.75em; }
+  @media (max-width: 640px) {
+    article.full .article-city {
+      display: none; }    article.full .article-summary h1 {
+      margin-top: 10px; }    article.full .article-date {
+      display: none; }    article.full .article-body {
+      padding: 10px 0; }
+      article.full .article-body figure {
+        margin: 10px 0; }
+        article.full .article-body figure figcaption {
+          padding: 5px;
+          font-size: 0.75em;
+          line-height: auto; }        article.full .article-body figure .attrib {
+          padding: 2.5px;
+          font-size: 0.75em;
+          line-height: auto; }        article.full .article-body figure.float {
+          float: none;
+          width: auto;
+          margin-left: 0;
+          margin-bottom: 10px;
+          margin-top: 10px; }
+          article.full .article-body figure.float figcaption {
+            padding: 5px;
+            font-size: 0.75em;
+            line-height: auto; }          article.full .article-body figure.float .attrib {
+            padding: 2.5px;
+            font-size: 0.75em;
+            line-height: auto; } }
+
+#beta {
+  float: right;
+  width: 300px; }
+  #beta .ad {
+    /* This is hard-coded because it has to fit a particular IAB ad unit size. */
+    width: 300px;
+    height: 250px;
+    margin-bottom: 20px;
+    background: #dddddd; }
+  #beta .sidebar {
+    width: 300px;
+    line-height: 20px; }
+  #beta .sidebar h2 {
+    margin: 0;
+    padding: 0;
+    font-size: 16px;
+    font-weight: bold;
+    line-height: 20px;
+    padding: 0 10px; }
+  @media (max-width: 930px) {
+    #beta {
+      float: none;
+      width: 600px; }
+      #beta .ad {
+        display: none; }      #beta .sidebar {
+        width: 600px; } }
+  @media (max-width: 640px) {
+    #beta {
+      width: auto; }
+      #beta .sidebar {
+        width: auto; } }
+
+.article-minilist, .article-minilist li {
+  margin: 0;
+  padding: 0;
+  list-style: none; }
+
+.article-minilist {
+  padding-top: 9px;
+  margin-top: 9px;
+  border-top: 2px solid #dddddd; }
+  .article-minilist li {
+    height: 60px;
+    padding-bottom: 9px;
+    margin-bottom: 9px;
+    border-bottom: 2px solid #dddddd;
+    position: relative; }
+  .article-minilist .article-photo {
+    height: 60px;
+    width: 70.02px;
+    margin-right: 10px;
+    margin-left: 10px;
+    float: left;
+    background-color: #dddddd;
+    background-size: cover; }
+  .article-minilist .article-photo a {
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0; }
+  .article-minilist .article-summary {
+    padding-right: 10px;
+    text-align: justify; }
+  .article-minilist .article-summary h3, .article-minilist .article-summary h2 {
+    margin: 0;
+    padding: 0;
+    line-height: 20px;
+    font-size: 12px;
+    font-weight: bold;
+    padding-top: 0; }
+  .article-minilist .article-summary p {
+    line-height: 20px;
+    font-size: 12px;
+    margin: 0;
+    padding: 0;
+    margin-top: 10px; }
+  .article-minilist .article-city {
+    position: absolute;
+    left: -5px;
+    top: 5px;
+    padding: 4px;
+    background: #006e55;
+    border: 2px solid white;
+    color: white;
+    border-radius: 5px;
+    font-size: 10px; }
+
+.referencelist, .referencelist li {
+  margin: 0;
+  padding: 0;
+  list-style: none; }
+
+.referencelist {
+  padding-top: 9px;
+  margin-top: 9px;
+  border-top: 2px solid #dddddd;
+  padding-bottom: 9px;
+  margin-bottom: 29px;
+  /* To push away the Related Articles list below. */
+  border-bottom: 2px solid #dddddd;
+  line-height: 20px; }
+  .referencelist li {
+    padding: 0 10px;
+    margin-top: 10px; }
+  .referencelist li:first-child {
+    margin-top: 0; }
+
+#clear {
+  clear: both; }
